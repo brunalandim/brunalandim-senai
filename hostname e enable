@@ -1,0 +1,23 @@
+!configuração do hostname e enable secret 
+
+en 
+conf t 
+hostname RT-01 
+end 
+wr
+
+
+!senhas 
+en 
+conf t 
+enable secret 3force20
+end
+wr
+
+!colocar uma mensagem 
+en 
+conf t
+banner motd "ACESSO APENAS PARA PESSOAS AUTORIZADAS!"
+end
+wr
+
