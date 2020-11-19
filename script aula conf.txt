@@ -1,0 +1,74 @@
+
+!hostname E TEXTO  
+en
+conf t
+hostname SW-LAB11-DUPLA4
+banner motd "ACESSO RESTRITO!APENAS A EQUIPE AUTORIZADA PODE ACESSAR ESSE DISPOSITIVO!"
+end
+wr
+
+!senhas console 
+en
+conf t
+line console 0
+password Network**00
+enable secret $3n41@132
+exit
+service password-encryotion
+exit
+wr
+
+!gerar ssh
+en
+conf t
+ip domain-name aula2.local
+username bruna privilege 15 secret 42BL#5
+username erick privilege 15 secret 365eri@6
+crypto key generate rsa general-key modulus 1024
+line vty 0 15
+transport input ssh
+line console 0 
+login local
+end
+wr
+
+!criando as vlan
+en
+conf t
+vlan 10
+name ESTUDANTES
+vlan 20
+name PROFESSORES
+vlan 30
+name DIRETORIA
+vlan 50
+name GERENCIAMENTO
+end 
+wr
+
+!configura o ip
+en
+conf t
+int vlan 50
+ip add 169.254.255.254 255.255.0.0
+no shutdown
+
+!interfaces nas vlans
+en
+conf t
+int range f0/1-5
+switchport mode access
+switchport access vlan 10
+int range f0/6-10
+switchport mode access
+switchport access vlan 20
+int range f0/11-15
+switchport mode access
+switchport access vlan 30
+int f0/23
+switchport mode access
+switchport access vlan 50
+end
+wr
+
+
