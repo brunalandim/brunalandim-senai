@@ -29,50 +29,7 @@ void setup() {
 
 void loop() {
   int estado = digitalRead(chave);
-
-while (estado == HIGH){
-  if(temperatura <= 25)
-  {
-      digitalWrite(2,HIGH);
-      delay(500);
-      digitalWrite(2,LOW);
-      delay(500);
-      Serial.println("sua temperatura:");
-      delay(1000);
-      Serial.println(temperatura);
-  }
-
-    if(temperatura >= 25 && temperatura < 70)
-  {
-      digitalWrite(3,HIGH);
-      delay(500);
-      digitalWrite(3,LOW);
-      delay(500);
-      Serial.println("sua temperatura:");
-      delay(1000);
-      Serial.println(temperatura);
-  }
-  
-  
-    if(temperatura > 70)
-  {
-      digitalWrite(4,HIGH);
-      delay(500);
-      digitalWrite(4,LOW);
-      delay(500);
-      Serial.println("sua temperatura:");
-      delay(1000);
-      Serial.println(temperatura);
-  }
-    int estado = digitalRead(chave);
-
-       if (estado == LOW)
-    {
-        break; 
-    }
-}
-  
-  //NÃO ALTERAR------------------------------------------------------------------------------------------------
+ //NÃO ALTERAR------------------------------------------------------------------------------------------------
   temperatura = ((analogRead(pinoAnalogico0) * (5.0/1024))-0.5)/0.01; //Executa a leitura da temperatura e armazena na variável 'temperatura'
   
   //Exibe no Monitor Serial a temperatura do Rack
@@ -83,6 +40,58 @@ while (estado == HIGH){
   delay(1000); //Aguarde 1 segundo
   //NÃO ALTERAR------------------------------------------------------------------------------------------------
 
+while (estado == HIGH){
+   temperatura = ((analogRead(pinoAnalogico0) * (5.0/1024))-0.5)/0.01; 
+  
+  if(temperatura <= 25)
+  {
+      digitalWrite(2,HIGH);
+      Serial.println("sua temperatura:");
+      delay(1000);
+      Serial.println(temperatura);
+  }
+  else{
+    digitalWrite(2,LOW); 
+  }
+
+    if(temperatura >= 25 && temperatura < 70)
+  {
+      digitalWrite(3,HIGH);
+      Serial.println("sua temperatura:");
+      delay(1000);
+      Serial.println(temperatura);
+  }
+  else
+  {
+    digitalWrite(3,LOW);
+  }
+  
+  
+    if(temperatura > 70)
+  {
+      digitalWrite(4,HIGH);
+      Serial.println("sua temperatura:");
+      delay(1000);
+      Serial.println(temperatura);
+  }
+  
+  else 
+  {
+    digitalWrite(4,LOW); 
+  }
+  
+    int estado = digitalRead(chave);
+
+       if (estado == LOW)
+    {
+        digitalWrite(2,LOW);
+        digitalWrite(3,LOW);
+        digitalWrite(4,LOW);  
+        break; 
+    }
+}
+  
+ 
  
 
 }
