@@ -1,4 +1,4 @@
-!configurar RT-01
+#!configurar RT-01
 en
 conf t
 hostname RT-01
@@ -11,7 +11,7 @@ service password-encryption
 end
 wr
 
-!configurar os ips
+#!configurar os ips
 conf t
 int g0/0.20
 encapsulation dot1q 20
