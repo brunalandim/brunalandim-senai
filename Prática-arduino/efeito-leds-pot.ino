@@ -6,7 +6,6 @@
         assim, foi preciso incluir mais uma variável. 
     
         autor: Bruna Landim 
-        data: 25/01/2021
         alteração:07/02/2021
 */
 
