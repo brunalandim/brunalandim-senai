@@ -1,0 +1,106 @@
+RSP
+en
+conf t
+int G0/0/0
+ip add 192.168.10.128 255.255.255.128
+no shutdown
+do write
+int Se0/1/0 
+ip add 10.0.0.9 255.255.255.252
+no shutdown
+int Se0/1/1
+ip add 10.0.0.18 255.255.255.252
+no shutdown
+do write
+
+!scripts de RIP
+enable
+configure terminal
+router rip
+version 2
+no auto-summary
+passive-interface g0/0/0
+network 192.168.10.0
+network 10.0.0.8
+network 10.0.0.16
+do write
+
+
+!RINTB
+enable
+configure terminal
+hostname RINTB
+end
+wr
+conf t
+int Se0/1/1
+ip add 10.0.0.10 255.255.255.252
+no shutdown
+int Se0/1/0 
+ip add 10.0.0.13 255.255.252.252
+no shutdown 
+do write
+!scripts de RIP
+enable 
+configure terminal
+router rip
+version 2 
+no auto-summary
+network 10.0.0.8
+network 10.0.0.12
+do write
+
+!RINTA
+enable 
+configure terminal
+hostname RINTA
+do write
+end
+conf t
+int s0/1/1
+ip add 10.0.0.2 255.255.255.252
+no shut 
+int s0/1/0
+ip add 10.0.0.17 255.255.255.252
+no shut
+!scripts RIP
+enable
+configure terminal
+router rip
+version 2
+no auto-summary
+network 10.0.0.16
+network 10.0.0.0
+do write
+
+!RRJ
+enable 
+configure terminal
+hostname RRJ
+end
+wr
+conf t
+int G0/0/0
+ip add 192.168.30.126 255.255.255.192
+no shut
+int S0/1/0
+ip add 10.0.0.14 255.255.255.252
+no shut
+int S0/1/1
+ip add 10.0.0.1 255.255.255.252
+no shut
+do write
+!scripts RIP 
+enable
+configure terminal
+router rip
+version 2
+no auto-summary
+passive-interface g0/0/0
+network 192.168.30.64
+network 10.0.0.12
+network 10.0.0.0
+do write
+
+
+
